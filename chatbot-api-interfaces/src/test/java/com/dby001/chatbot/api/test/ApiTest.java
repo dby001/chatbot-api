@@ -43,13 +43,13 @@ public class ApiTest {
     public void answer() throws IOException{
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         //https://api.zsxq.com/v2/groups/28885155585281/topics?scope=unanswered_questions&count=20
-        HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/588148255115854/answer");
+        HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/188518218851452/answer");
         post.addHeader("cookie","abtest_env=product; zsxq_access_token=9AF81B6E-236E-854D-A15D-66A9E5925FE1_670F4E2937C23809; zsxqsessionid=a7ebb7284e4950bbfc252c7074754fae");
         post.addHeader("content-type", "application/json,charset=UTF-8");
 
         String paramJson = "{\n" +
                 "  \"req_data\": {\n" +
-                "    \"text\": \"拉黑了拉黑了\\n\",\n" +
+                "    \"text\": \"嗨嗨嗨\\n\",\n" +
                 "    \"image_ids\": [],\n" +
                 "    \"silenced\": false\n" +
                 "  }\n" +
