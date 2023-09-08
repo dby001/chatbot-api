@@ -3,7 +3,9 @@ package com.dby001.chatbot.api.test;
 
 
 import org.apache.hc.core5.http.ClassicHttpRequest;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -13,7 +15,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.tomcat.jni.Proc;
 import org.junit.Test;
+import org.openqa.selenium.Proxy;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -69,8 +74,29 @@ public class ApiTest {
     }
 
     @Test
-    public void test_chatGPT(){
-        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+    public void test_chatGPT() throws IOException {
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();//.setProxy(new HttpHost("127.0.0.1",8080))
+        //RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(600*1000).setConnectionRequestTimeout(600*1000).build();
+        HttpPost post = new HttpPost("https://api.openai.com/v1/chat/completions");
+        post.addHeader("Content-Type", "application/json");
+        post.addHeader("Authorization","Bearer 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");
 
+        String paramJson = "{\n" +
+                "     \"model\": \"gpt-3.5-turbo\",\n" +
+                "     \"messages\": [{\"role\": \"user\", \"content\": \"帮我写一个冒泡排序!\"}],\n" +
+                "     \"temperature\": 0.7\n" +
+                "   }";
+
+        StringEntity stringEntity = new StringEntity(paramJson,ContentType.create("text/json","UTF-8"));
+        post.setEntity(stringEntity);
+
+        //post.setConfig(requestConfig);
+        CloseableHttpResponse response = httpClient.execute(post);
+        if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+            String res = EntityUtils.toString(response.getEntity());
+            System.out.println(res);
+        }else {
+            System.out.println(response.getStatusLine().getStatusCode());
+        }
     }
 }
