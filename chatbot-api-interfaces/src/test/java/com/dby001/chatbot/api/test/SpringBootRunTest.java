@@ -26,7 +26,7 @@ public class SpringBootRunTest {
 
     @Value("${chatbot-api.groupId}")
     private String groupId;
-    @Value("${chatbot-api.openAiKey}")
+    @Value("${chatbot-api.cookie}")
     private String cookie;
     @Value("${chatbot-api.openAiKey}")
     private String openAiKey;
@@ -50,7 +50,7 @@ public class SpringBootRunTest {
             logger.info("topicID:{},text:{}", topicId, text);
 
             //回答问题
-            boolean answer = zsxqApi.answer(groupId, cookie, topicId, text, false);
+            boolean answer = zsxqApi.answer(groupId, cookie, topicId, text+text, false);
             logger.info("answer:{}", answer);
         }
 

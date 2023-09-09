@@ -2,7 +2,7 @@ package com.dby001.chatbot.api.domain.zsxq.model.req;
 
 
 /**
- * 问答结果
+ * 回答请求
  */
 public class AnswerReq {
 

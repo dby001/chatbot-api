@@ -17,12 +17,14 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.tomcat.jni.Proc;
 import org.junit.Test;
-import org.openqa.selenium.Proxy;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
+import java.net.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+
+
 
 public class ApiTest {
 
@@ -75,11 +77,21 @@ public class ApiTest {
 
     @Test
     public void test_chatGPT() throws IOException {
+        //142.202.242.68      60015
+//        HttpHost proxy = new HttpHost("142.202.242.68",60015);
+//        RequestConfig requestConfig = RequestConfig.custom()
+//                .setConnectionRequestTimeout(60*1000)
+//                .setConnectTimeout(60*1000)
+//                .setSocketTimeout(60*1000)
+//                .setProxy(proxy).build();
+//
+//        CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(requestConfig).build();
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();//.setProxy(new HttpHost("127.0.0.1",8080))
+
         //RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(600*1000).setConnectionRequestTimeout(600*1000).build();
-        HttpPost post = new HttpPost("https://api.openai.com/v1/chat/completions");
+        HttpPost post = new HttpPost("https://open.aiproxy.xyz/v1/chat/completions");
         post.addHeader("Content-Type", "application/json");
-        post.addHeader("Authorization","Bearer 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");
+        post.addHeader("Authorization","Bearer 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");
 
         String paramJson = "{\n" +
                 "     \"model\": \"gpt-3.5-turbo\",\n" +

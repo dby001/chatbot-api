@@ -1,5 +1,7 @@
 package com.dby001.chatbot.api.domain.zsxq.model.res;
 
+
+//回答结果
 public class AnswerRes {
 
     private boolean succeeded;

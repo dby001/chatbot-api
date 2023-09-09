@@ -1,12 +1,12 @@
 package com.dby001.chatbot.api.domain.zsxq.service;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.dby001.chatbot.api.domain.zsxq.IZsxqApi;
 import com.dby001.chatbot.api.domain.zsxq.model.aggregates.UnAnswerQuestionsAggregates;
 import com.dby001.chatbot.api.domain.zsxq.model.req.AnswerReq;
 import com.dby001.chatbot.api.domain.zsxq.model.req.ReqData;
 import com.dby001.chatbot.api.domain.zsxq.model.res.AnswerRes;
-import net.sf.json.JSONObject;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -63,8 +63,9 @@ public class ZsxqApi implements IZsxqApi {
 //                "  }\n" +
 //                "}";
 
-        AnswerReq answerReq = new AnswerReq(new ReqData(text,silenced));
-        String paramJson = JSONObject.fromObject(answerReq).toString();
+
+        AnswerReq answerReq = new AnswerReq(new ReqData(text, silenced));
+        String paramJson = JSONObject.toJSONString(answerReq);
 
 
         StringEntity stringEntity = new StringEntity(paramJson, ContentType.create("text/json", "UTF-8"));
