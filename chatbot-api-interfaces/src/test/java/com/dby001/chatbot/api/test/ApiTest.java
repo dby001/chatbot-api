@@ -22,19 +22,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.io.IOException;
 import java.net.Proxy;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-
+import java.util.*;
+import java.util.function.Function;
 
 
 public class ApiTest {
 
+    List<String> list = Arrays.asList("java","c","python","c++","VB","C#");
+//    Thread
     @Test
     public void query_unanswered_questions() throws IOException {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-
         HttpGet get = new HttpGet("https://api.zsxq.com/v2/groups/28885155585281/topics?scope=unanswered_questions&count=20");
         get.addHeader("cookie","abtest_env=product; zsxq_access_token=9AF81B6E-236E-854D-A15D-66A9E5925FE1_670F4E2937C23809; zsxqsessionid=a7ebb7284e4950bbfc252c7074754fae");
         get.addHeader("content-type", "application/json,charset=UTF-8");
+
+//        list.forEach();
 
         CloseableHttpResponse response = httpClient.execute(get);
 

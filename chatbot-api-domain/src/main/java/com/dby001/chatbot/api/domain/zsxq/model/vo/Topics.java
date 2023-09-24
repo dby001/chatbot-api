@@ -1,6 +1,17 @@
 package com.dby001.chatbot.api.domain.zsxq.model.vo;
 
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Topics {
+
+//    ThreadLocal
+//    ThreadPoolExecutor
+//    ReentrantLock
 
     private String topic_id;
 
